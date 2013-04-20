@@ -1,7 +1,7 @@
 
 # store
 
-  store.
+  minimal store inspired by [component/cookie](https://github.com/component/cookie)
 
 ## Installation
 
