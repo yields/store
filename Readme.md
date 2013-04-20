@@ -34,11 +34,11 @@ remove `key`.
 
 get `key` value, it will be unserialized.
 
-## store(null)
+### store(null)
 
 invokes `localStorage.clear()`
 
-## store()
+### store()
 
 get all items, they will be unserialized.
 
