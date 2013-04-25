@@ -23,6 +23,20 @@ exports = module.exports = function(key, val){
 };
 
 /**
+ * supported flag.
+ */
+
+exports.supported = !! storage;
+
+/**
+ * export methods.
+ */
+
+exports.set = set;
+exports.get = get;
+exports.all = all;
+
+/**
  * Set `key` to `val`.
  * 
  * @param {String} key
