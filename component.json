@@ -2,8 +2,8 @@
   "name": "store",
   "repo": "yields/store",
   "description": "store.",
-  "version": "0.0.1",
-  "keywords": [],
+  "version": "0.1.0",
+  "keywords": ["store", "localstorage"],
   "dependencies": {
     "yields/unserialize": "*"  
   },
