@@ -1,4 +1,3 @@
-
 var store = require('store');
 
 function assert(expr, ms){
@@ -9,12 +8,12 @@ function assert(expr, ms){
 describe('store(key, val)', function(){
   it('should set the given `key` to `val`', function(){
     store('something', 'val');
-    // assert('val' == store('something'));
+    assert('val' == store('something'));
   })
 
   it('should `stringify` the value', function(){
     store('something', true);
-    // assert(true == store('something'));
+    assert(true == store('something'));
   })
 })
 
@@ -28,7 +27,7 @@ describe('store(key, null)', function(){
 describe('store(key)', function(){
   it('should retrieve the value', function(){
     store('something', 0);
-    store(0 == assert('something'));
+    assert(0 == store('something'));
   })
 })
 
