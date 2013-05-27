@@ -19,7 +19,7 @@ var each = require('each')
 exports = module.exports = function(key, val){
   switch (arguments.length) {
     case 2: return set(key, val);
-    case 1: return 'object' == type(key) ? set(key) : get(key);
+    case 1: return 'object' == type(key) ? each(key, set) : get(key);
     case 0: return all();
   }
 };
@@ -46,7 +46,6 @@ exports.all = all;
  */
 
 function set(key, val){
-  if ('object' == type(key)) return each(key, set);
   return null == val
     ? storage.removeItem(key)
     : storage.setItem(key, JSON.stringify(val));
