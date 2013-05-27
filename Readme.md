@@ -12,6 +12,8 @@
 ```js
 store('foo', ['baz']);
 store('foo'); // > ['baz']
+store({ foo: 'baz' });
+store('foo'); // > 'baz'
 store('foo', null);
 store('foo'); // > null
 store('baz', 0);
@@ -25,6 +27,10 @@ store(); // > {}
 ### store(key, val)
 
 set `key` to `val`, the value will be `JSON.stringify()`ied.
+
+### store(obj)
+
+store the given `object`.
 
 ### store(key, null)
 

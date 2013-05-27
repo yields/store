@@ -19,8 +19,10 @@ var each = require('each')
 exports = module.exports = function(key, val){
   switch (arguments.length) {
     case 2: return set(key, val);
-    case 1: return 'object' == type(key) ? each(key, set) : get(key);
     case 0: return all();
+    case 1: return 'object' == type(key)
+      ? each(key, set)
+      : get(key);
   }
 };
 
