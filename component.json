@@ -5,7 +5,9 @@
   "version": "0.1.0",
   "keywords": ["store", "localstorage"],
   "dependencies": {
-    "yields/unserialize": "*"  
+    "component/each": "*",
+    "component/type": "*",
+    "yields/unserialize": "*"
   },
   "development": {
     "visionmedia/mocha": "*"

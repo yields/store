@@ -29,6 +29,12 @@ describe('store(key)', function(){
     store('something', 0);
     assert(0 == store('something'));
   })
+
+  it('should set objects', function () {
+    store({ something : true, someone : false });
+    assert(true == store('something'));
+    assert(false == store('someone'));
+  })
 })
 
 describe('store()', function(){
