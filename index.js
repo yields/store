@@ -3,12 +3,14 @@
  * dependencies.
  */
 
-var unserialize = require('unserialize')
-  , storage = window.localStorage;
+var each = require('each')
+  , unserialize = require('unserialize')
+  , storage = window.localStorage
+  , type = require('type');
 
 /**
  * Store the given `key` `val`.
- * 
+ *
  * @param {String} key
  * @param {Mixed} val
  * @return {Mixed}
@@ -17,7 +19,7 @@ var unserialize = require('unserialize')
 exports = module.exports = function(key, val){
   switch (arguments.length) {
     case 2: return set(key, val);
-    case 1: return get(key);
+    case 1: return 'object' == type(key) ? each(key, set) : get(key);
     case 0: return all();
   }
 };
@@ -38,7 +40,7 @@ exports.all = all;
 
 /**
  * Set `key` to `val`.
- * 
+ *
  * @param {String} key
  * @param {Mixed} val
  */
@@ -51,7 +53,7 @@ function set(key, val){
 
 /**
  * Get `key`.
- * 
+ *
  * @param {String} key
  * @return {Mixed}
  */
@@ -64,7 +66,7 @@ function get(key){
 
 /**
  * Get all.
- * 
+ *
  * @return {Object}
  */
 
