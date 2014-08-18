@@ -1,53 +1,47 @@
-var store = require('store');
 
-function assert(expr, ms){
-  if (expr) return;
-  throw new Error(ms || 'major fail');
-}
+var assert = require('component/assert');
+var store = require('../index');
 
-describe('store(key, val)', function(){
-  it('should set the given `key` to `val`', function(){
-    store('something', 'val');
-    assert('val' == store('something'));
-  })
-
-  it('should `stringify` the value', function(){
-    store('something', true);
-    assert(true == store('something'));
-  })
-})
-
-describe('store(key, null)', function(){
-  it('should remove the item', function(){
-    store('something', null);
-    assert(null == store('something'));
-  })
-})
-
-describe('store(key)', function(){
-  it('should retrieve the value', function(){
-    store('something', 0);
-    assert(0 == store('something'));
-  })
-
-  it('should set objects', function () {
-    store({ something : true, someone : false });
-    assert(true == store('something'));
-    assert(false == store('someone'));
-  })
-})
-
-describe('store()', function(){
-  it('should return an object', function(){
-    store('foo', ['baz']);
-    assert(1 == store().foo.length)
-  })
-})
-
-describe('store(null)', function(){
-  it('should remove all items', function(){
-    store('baz', [22]);
+describe('store', function(){
+  beforeEach(function(){
     store(null);
-    assert(0 == Object.keys(store()).length);
-  })
-})
+  });
+
+  describe('(key, value)', function(){
+    it('should set `key`, `value`', function(){
+      assert.equal(null, store('key'));
+      store('key', 'value');
+      assert.equal('value', store('key'));
+    });
+  });
+
+  describe('(key)', function(){
+    it('should get a key', function(){
+      assert.equal(null, store('key'));
+      store('key', 'value');
+      assert.equal('value', store('key'));
+    });
+  });
+
+  describe('()', function(){
+    it('should return all data', function(){
+      assert.equal(null, store('key'));
+      store('key', 'value');
+      store('other', 'value');
+      assert.deepEqual(store(), {
+        key: 'value',
+        other: 'value'
+      });
+    });
+  });
+
+  describe('(null)', function(){
+    it('should remove all data', function(){
+      assert.equal(null, store('key'));
+      store('a', 'value');
+      store('b', 'value');
+      store(null);
+      assert.deepEqual(store(), {});
+    });
+  });
+});

@@ -3,42 +3,40 @@
  * dependencies.
  */
 
-var each = require('each')
-  , unserialize = require('unserialize')
-  , storage = window.localStorage
-  , type = require('type');
+var unserialize = require('yields/unserialize');
+var each = require('component/each');
+var storage = window.localStorage;
 
 /**
- * Store the given `key` `val`.
- *
- * @param {String} key
- * @param {Mixed} val
- * @return {Mixed}
+ * Expose `store`
  */
 
-exports = module.exports = function(key, val){
-  switch (arguments.length) {
-    case 2: return set(key, val);
-    case 0: return all();
-    case 1: return 'object' == type(key)
-      ? each(key, set)
-      : get(key);
-  }
-};
+module.exports = store;
+
+/**
+ * Store the given `key`, `val`.
+ *
+ * @param {String|Object} key
+ * @param {Mixed} value
+ * @return {Mixed}
+ * @api public
+ */
+
+function store(key, value){
+  var length = arguments.length;
+  if (0 == length) return all();
+  if (2 <= length) return set(key, value);
+  if (1 != length) return;
+  if (null == key) return storage.clear();
+  if ('string' == typeof key) return get(key);
+  if ('object' == typeof key) return each(key, set);
+}
 
 /**
  * supported flag.
  */
 
-exports.supported = !! storage;
-
-/**
- * export methods.
- */
-
-exports.set = set;
-exports.get = get;
-exports.all = all;
+store.supported = !! storage;
 
 /**
  * Set `key` to `val`.
@@ -61,9 +59,7 @@ function set(key, val){
  */
 
 function get(key){
-  return null == key
-    ? storage.clear()
-    : unserialize(storage.getItem(key));
+  return unserialize(storage.getItem(key));
 }
 
 /**
@@ -73,13 +69,12 @@ function get(key){
  */
 
 function all(){
-  var len = storage.length
-    , ret = {}
-    , key
-    , val;
+  var len = storage.length;
+  var ret = {};
+  var key;
 
-  for (var i = 0; i < len; ++i) {
-    key = storage.key(i);
+  while (0 <= --len) {
+    key = storage.key(len);
     ret[key] = get(key);
   }
 

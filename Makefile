@@ -1,14 +1,11 @@
 
-build: components index.js
-	@component build --dev
-
-components: component.json
-	@component install --dev
+build.js: test/test.js index.js
+	@duo $< > build.js
 
 clean:
-	rm -fr build components template.js
+	rm -fr build.js components
 
-test:
-	@open test/test.html
+test: build.js
+	@duo-test -c make browser
 
 .PHONY: clean test
