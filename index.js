@@ -3,8 +3,8 @@
  * dependencies.
  */
 
-var unserialize = require('yields/unserialize');
-var each = require('component/each');
+var unserialize = require('unserialize');
+var each = require('each');
 var storage = window.localStorage;
 
 /**
