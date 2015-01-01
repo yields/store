@@ -1,4 +1,9 @@
 
+1.0.2 / 2015-01-01
+==================
+
+  * fix: add try/catch for blocked localstorage access (safari throws)
+
 1.0.1 / 2014-09-24
 ==================
 
