@@ -5,7 +5,18 @@
 
 var unserialize = require('unserialize');
 var each = require('each');
-var storage = window.localStorage;
+var storage;
+
+/**
+ * Safari throws when a user
+ * blocks access to cookies / localstorage.
+ */
+
+try {
+  storage = window.localStorage;
+} catch (e) {
+  storage = null;
+}
 
 /**
  * Expose `store`
