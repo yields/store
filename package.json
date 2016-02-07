@@ -1,0 +1,30 @@
+{
+  "name": "yields-store",
+  "version": "1.0.2",
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yields/store.git"
+  },
+  "keywords": [
+    "browser"
+  ],
+  "dependencies": {
+    "yields-unserialize": "*",
+    "component-each": "*"
+  },
+  "browser": {
+    "unserialize": "yields-unserialize",
+    "each": "component-each"
+  },
+  "author": "Amir Abu Shareb <yields@icloud.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yields/store/issues"
+  },
+  "files": [
+    "index.js"
+  ]
+}
